@@ -1,4 +1,5 @@
 #include <string>
+#include <clocale>
 #include "draw.h"
 
 
@@ -15,6 +16,7 @@ void ldemo(info& in) { //test values
 
 
 int main() {
+    setlocale(LC_ALL, "C.UTF-8");
     initscr();
     cbreak();
     noecho();

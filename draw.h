@@ -12,7 +12,7 @@
 
 const int margint = 3;
 const int marginl = 4;
-const int ebarmargin = marginl + 8 * 2 + 1;
+const int ebarmargin = marginl + 8 * 3 + 1;
 const int infpanmargin = ebarmargin + 4;
 const int stusmargin = margint + 9;
 
@@ -31,7 +31,7 @@ inline void drawb(const board& b) { //drawing the board
     mvprintw(0, 0, "CHESS - pav");
 
     for (int c = 0; c < 8; c++){
-        mvaddch(margint - 1, marginl + c * 2, 'a' + c);
+        mvaddch(margint - 1, marginl + c * 3 + 1, 'a' + c);
     }
 
     for (int r = 0; r < 8; r++){
@@ -63,7 +63,18 @@ inline void drawb(const board& b) { //drawing the board
                 attron(A_BOLD);
             }
 
-            mvprintw(margint + r, margint + c * 2, "%c ", b.sq[r][c] == ' ' ? ' ' : toupper(b.sq[r][c]));
+            const char* glyph;
+            switch (toupper(b.sq[r][c])){
+                case 'K': glyph = "♚"; break;
+                case 'Q': glyph = "♛"; break;
+                case 'R': glyph = "♜"; break;
+                case 'B': glyph = "♝"; break;
+                case 'N': glyph = "♞"; break;
+                case 'P': glyph = "♟"; break;
+                default: glyph = " "; break;
+            }
+
+            mvprintw(margint + r, marginl + c * 3, " %s ", glyph);
             if (white == true){
                 attroff(A_BOLD);
             }
