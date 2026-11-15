@@ -2,6 +2,7 @@
 #include <cctype>
 #include <cstdlib>
 #include <string>
+#include <vector>
 
 // makes thet board
 struct board {
@@ -22,3 +23,31 @@ struct board {
         }
     }
 };
+
+// info of the players
+struct info {
+    std::string wname = "White's name";
+    std::string bname = "Black's name";
+
+    int welo = -1;
+    int belo = - 1;
+
+    std::vector<std::string> mlist;
+    int evalCP = 0;
+
+    bool evalMate = false;
+    bool mIn = 0;
+
+    bool check = 0;
+    bool mate = 0;
+};
+
+
+std::string elot(int elo){
+    if (elo < 0){
+        return "n/a";
+    }
+    else {
+        return std::to_string(elo);
+    }
+}
