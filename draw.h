@@ -1,5 +1,5 @@
 #pragma once // draw code here
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -94,9 +94,8 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { /
                 default: glyph = L" "; break;
             }
 
-            mvaddch(margint + r, marginl + c * 3, ' ');
-            mvaddwstr(margint + r, marginl + c * 3 + 1, glyph);
-            mvaddch(margint + r, marginl + c * 3 + 2, ' ');
+            wchar_t square[3] = {L' ', glyph[0], L' '};
+            mvaddnwstr(margint + r, marginl + c * 3, square, 3);
             if (white == true){
                 attroff(A_BOLD);
             }
