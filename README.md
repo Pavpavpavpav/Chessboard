@@ -7,7 +7,7 @@ A chess board built in c++ that can be used as the gui for UCI engines. To play 
 - A board that shows all the pieces in symbols
 - Pieces can be moved with the keyboard
 - No protection against illegal moves (but engines may crash if one happens)
-- Moves shown in alg. notation (Only last 3)
+- Moves shown in alg. notation (Only last 3), no check or checkmate indication yet
 - Works with UCI engines
 - You can switch sides (it will restart the game!)
 - Comes with Stockfish pre-installed
@@ -24,7 +24,7 @@ A chess board built in c++ that can be used as the gui for UCI engines. To play 
 
 ```
 sudo apt install -y g++ make git libncurses-dev    # Debian/Ubuntu
-git clone https://github.com/YOUR-USERNAME/Chessboard.git
+git clone https://github.com/pavpavpavpav/Chessboard.git
 cd Chessboard
 sh setup.sh
 ./chess
