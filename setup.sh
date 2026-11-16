@@ -11,5 +11,5 @@ if [ ! -f engines/stockfish ]; then
     cp engines/stockfish-src/src/stockfish engines/stockfish
 fi
 
-g++ -std=c++17 main.cpp -lncurses -o chess
+g++ -std=c++17 main.cpp -lncursesw -o chess
 echo "Done. Run ./chess"
