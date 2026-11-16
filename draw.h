@@ -6,6 +6,8 @@
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
+#include <cwchar>
+#include <locale.h>
 #include "board.h"
 
 // variables and stuff
@@ -81,18 +83,19 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { /
                 attron(A_BOLD);
             }
 
-            const char* glyph;
+            const wchar_t* glyph;
             switch (toupper(b.sq[br][bc])){
-                case 'K': glyph = "♚"; break;
-                case 'Q': glyph = "♛"; break;
-                case 'R': glyph = "♜"; break;
-                case 'B': glyph = "♝"; break;
-                case 'N': glyph = "♞"; break;
-                case 'P': glyph = "♟"; break;
-                default: glyph = " "; break;
+                case 'K': glyph = L"♚"; break;
+                case 'Q': glyph = L"♛"; break;
+                case 'R': glyph = L"♜"; break;
+                case 'B': glyph = L"♝"; break;
+                case 'N': glyph = L"♞"; break;
+                case 'P': glyph = L"♟"; break;
+                default: glyph = L" "; break;
             }
 
-            mvprintw(margint + r, marginl + c * 4, " %s  ", glyph);
+            mvaddwstr(margint + r, marginl + c * 4, L" ");
+            mvaddwstr(margint + r, marginl + c * 4 + 1, glyph);
             if (white == true){
                 attroff(A_BOLD);
             }

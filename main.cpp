@@ -11,7 +11,7 @@ std::string sqn(int r, int c){ //returns the square selected
 }
 
 int main(int argc, char* argv[]) {
-    setlocale(LC_ALL, "C.UTF-8");
+    setlocale(LC_ALL, "");
     initscr();
     cbreak();
     noecho();
