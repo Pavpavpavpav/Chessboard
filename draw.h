@@ -94,8 +94,9 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { /
                 default: glyph = L" "; break;
             }
 
-            mvaddwstr(margint + r, marginl + c * 4, L" ");
+            mvaddch(margint + r, marginl + c * 4, ' ');
             mvaddwstr(margint + r, marginl + c * 4 + 1, glyph);
+            mvaddch(margint + r, marginl + c * 4 + 3, ' ');
             if (white == true){
                 attroff(A_BOLD);
             }
