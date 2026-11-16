@@ -81,9 +81,6 @@ inline void drawb(const board& b) { //drawing the board
             attroff(COLOR_PAIR(colr));
         }
     }
-    for (int c = 0; c < 8; c++){
-        mvaddch(8 * 3, 3 + c * 6 + 6 / 2, 'a' + c);
-    }
 }
 
 inline void drawebar(const info& in){ // evaluation bar drawing in centipawns

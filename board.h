@@ -36,14 +36,14 @@ struct info {
     int evalCP = 0;
 
     bool evalMate = false;
-    bool mIn = 0;
+    int mIn = 0;
 
     bool check = 0;
     bool mate = 0;
 };
 
 
-std::string elot(int elo){
+inline std::string elot(int elo){
     if (elo < 0){
         return "n/a";
     }

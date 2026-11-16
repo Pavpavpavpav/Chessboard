@@ -60,7 +60,7 @@ int main() {
         if (ch == 'n' || ch == 'N'){
             newGame();
         }
-        if (ch == 'e' || 'E'){
+        if (ch == 'e' || ch == 'E'){
             //engine stuff here
         }
     }
