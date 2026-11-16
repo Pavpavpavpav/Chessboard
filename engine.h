@@ -148,6 +148,6 @@ struct engine {
         fromE = -1;
         buffer.clear();
         name.clear();
-        hElo = false;
+        helo = false;
     }
 };
