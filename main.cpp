@@ -98,17 +98,17 @@ int main(int argc, char* argv[]) {
                 int elo = std::max(eng.elomin, std::min(eng.elomax, 1500));
                 eng.send("setoption name UCI_LimitStrength value true");
                 eng.send("setoption name UCI_Elo value " + std::to_string(elo));
-                engElo = elo;
+                eelo = elo;
             }
             else {
-                engElo = -1;
+                eelo = -1;
             }
             newGame();
             return true;
         }
         eng.stop();
         return false;
-    }
+    };
 
     std::string self = argv[0]; //tried to find def engine at startup (! change when i make new engine)
     size_t slash = self.rfind('/');
