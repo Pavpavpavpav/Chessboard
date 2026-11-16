@@ -123,7 +123,11 @@ struct info {
 
     bool check = 0;
     bool mate = 0;
+
+    bool engine = false;
+    bool pWhite = false;
 };
+
 
 
 inline std::string elot(int elo){

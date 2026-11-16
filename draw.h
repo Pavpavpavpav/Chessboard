@@ -29,18 +29,21 @@ inline void color() {
     init_pair(8, COLOR_BLACK, COLOR_GREEN); //piece seleected
 }
 
-inline void drawb(const board& b, int cr, int cc, int sr, int sc) { //drawing the board
+inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { //drawing the board
     mvprintw(0, 0, "CHESS - pav");
 
     for (int c = 0; c < 8; c++){
-        mvaddch(margint - 1, marginl + c * 3 + 1, 'a' + c);
+        int file = flip ? 7 - c : c;
+        mvaddch(margint - 1, marginl + c * 3 + 1, 'a' + file);
     }
 
     for (int r = 0; r < 8; r++){
-        mvprintw(margint + r, marginl - 3, "%d", 8 - r);
+        int br = flip ? 7 - r : r;
+        mvprintw(margint + r, marginl - 3, "%d", 8 - br);
         for (int c = 0; c < 8; c++){
-            bool bg = (r + c) % 2 == 0;
-            bool white = isupper(b.sq[r][c]);
+            int bc = flip ? 7 - c : c;
+            bool bg = (br + bc) % 2 == 0;
+            bool white = isupper(b.sq[br][bc]);
 
             int colr;
             if (bg == true){
@@ -73,7 +76,7 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc) { //drawing th
             }
 
             const char* glyph;
-            switch (toupper(b.sq[r][c])){
+            switch (toupper(b.sq[br][bc])){
                 case 'K': glyph = "♚"; break;
                 case 'Q': glyph = "♛"; break;
                 case 'R': glyph = "♜"; break;
@@ -111,7 +114,7 @@ inline void drawebar(const info& in){ // evaluation bar drawing in centipawns
     int whiter = (int)(fract * 8 + 0.5);
 
     for (int i = 0; i < 8; i++){
-        bool white = i >= 8 - whiter;
+        bool white = in.pWhite ? (i >= 8 - whiter) : (i < whiter);
         if (white == true){
             attron(COLOR_PAIR(5));
         }
@@ -139,12 +142,20 @@ inline void drawebar(const info& in){ // evaluation bar drawing in centipawns
     mvprintw(margint + 8, ebarmargin - 1, "%s", buffer);
 }
 
-inline void drawipan(const info& in){ // draw the inforation on the right of the board
-    mvprintw(margint, infpanmargin, "Black - %s", in.bname.c_str());
-    mvprintw(margint + 1, infpanmargin, "Elo - %s", elot(in.belo).c_str());
+inline void drawp(int y, const char* side, const std::string& name, int elo){
+    mvprintw(y, infpanmargin, "%s - %s", side, name.c_str());
+    mvprintw(y + 1, infpanmargin, "Elo - %s", elot(elo).c_str());
+}
 
-    mvprintw(margint + 6, infpanmargin, "White - %s", in.wname.c_str());
-    mvprintw(margint + 7, infpanmargin, "Elo - %s", elot(in.welo).c_str());
+inline void drawipan(const info& in){ // draw the inforation on the right of the board
+    if (in.pWhite == true){
+        drawp(margint, "Black", in.bname, in.belo);
+        drawp(margint + 6, "White", in.wname, in.welo);
+    }
+    else {
+        drawp(margint + 6, "Black", in.bname, in.belo);
+        drawp(margint, "White", in.wname, in.welo);
+    }
 
     mvprintw(margint + 2, infpanmargin, "Move list:");
 
@@ -167,5 +178,8 @@ inline void drawstus(const info& in){ //who moves checks and other stuff under t
     else if (in.check == true) {
         mvprintw(stusmargin + 1, 0, "Check!");
     }
-    mvprintw(stusmargin + 2, 0, "N - New game  Q - Quit  E - pick engine");
+    else if (in.engine == false){
+        mvprintw(stusmargin + 1, 0, "No engine found - link its path!");
+    }
+    mvprintw(stusmargin + 2, 0, "N - New game  Q - Quit  S - Switch side  E - pick engine");
 }
