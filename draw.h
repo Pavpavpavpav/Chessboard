@@ -25,9 +25,11 @@ inline void color() {
     init_pair(4, COLOR_RED, COLOR_CYAN); // white on black
     init_pair(5, COLOR_WHITE, COLOR_WHITE); //eval bar white
     init_pair(6, COLOR_BLACK, COLOR_BLACK); //eval bar black
+    init_pair(7, COLOR_BLACK, COLOR_YELLOW); //piece hovered ocver
+    init_pair(8, COLOR_BLACK, COLOR_GREEN); //piece seleected
 }
 
-inline void drawb(const board& b) { //drawing the board
+inline void drawb(const board& b, int cr, int cc, int sr, int sc) { //drawing the board
     mvprintw(0, 0, "CHESS - pav");
 
     for (int c = 0; c < 8; c++){
@@ -56,6 +58,13 @@ inline void drawb(const board& b) { //drawing the board
                 else {
                     colr = 3;
                 }
+            }
+
+            if (r == sr && c == sc){
+                colr = 8;
+            }
+            if (r == cr && c == cc){
+                colr = 7;
             }
 
             attron(COLOR_PAIR(colr));
