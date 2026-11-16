@@ -14,7 +14,7 @@
 
 const int margint = 3;
 const int marginl = 4;
-const int ebarmargin = marginl + 8 * 4 + 1;
+const int ebarmargin = marginl + 8 * 3 + 1;
 const int infpanmargin = ebarmargin + 4;
 const int stusmargin = margint + 9;
 
@@ -36,7 +36,7 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { /
 
     for (int c = 0; c < 8; c++){
         int file = flip ? 7 - c : c;
-        mvaddch(margint - 1, marginl + c * 4 + 1, 'a' + file);
+        mvaddch(margint - 1, marginl + c * 3 + 1, 'a' + file);
     }
 
     int crf = flip ? 7 - cr : cr;
@@ -94,9 +94,9 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { /
                 default: glyph = L" "; break;
             }
 
-            mvaddch(margint + r, marginl + c * 4, ' ');
-            mvaddwstr(margint + r, marginl + c * 4 + 1, glyph);
-            mvaddch(margint + r, marginl + c * 4 + 3, ' ');
+            mvaddch(margint + r, marginl + c * 3, ' ');
+            mvaddwstr(margint + r, marginl + c * 3 + 1, glyph);
+            mvaddch(margint + r, marginl + c * 3 + 2, ' ');
             if (white == true){
                 attroff(A_BOLD);
             }
