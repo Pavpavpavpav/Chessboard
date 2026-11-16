@@ -45,6 +45,7 @@ int main() {
     auto newGame = [&]() { 
         b = board();
         in.mlist.clear();
+        in.ulist.clear();
         in.evalCP = 0;
         in.evalMate = false;
         in.check = false;
@@ -104,8 +105,9 @@ int main() {
                 if ((b.sq[sr][sc] == 'P' && cr == 0) || (b.sq[sr][sc] == 'p' && cr == 7)){
                     m += 'q';
                 }
+                in.mlist.push_back(b.toSAN(m));
                 b.applym(m);
-                in.mlist.push_back(m);
+                in.ulist.push_back(m);
                 sr = -1;
                 sc = -1;
             }

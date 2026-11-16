@@ -63,6 +63,47 @@ struct board {
             }
         }
     }
+
+    std::string toSAN(const std::string&m) const {
+        int fc = m[0] - 'a';
+        int fr = 8 - (m[1] - '0');
+
+        int tc = m[2] - 'a';
+        int tr = 8 - (m[3] - '0');
+
+        char piece = toupper(sq[fr][fc]);
+
+        if (piece == 'K' && abs(tc - fc) == 2) {
+            if (tc > fc){
+                return "O-O";
+            }
+            else {
+                return "O-O-O";
+            }
+        }
+
+        bool capt = sq[tr][tc] != ' ' || (piece == 'P' && fc != tc);
+
+        std::string san;
+
+        if (piece == 'P'){
+            if (capt == true){
+                san += m[0];
+            }
+        }
+        else {
+            san += piece;
+        }
+        if(capt == true){
+            san += 'x';
+        }
+        san += m.substr(2, 2);
+        if (m.size() == 5){
+            san += '=';
+            san += toupper(m[4]);
+        }
+        return san;
+    }
 };
 
 // info of the players
@@ -73,7 +114,8 @@ struct info {
     int welo = -1;
     int belo = - 1;
 
-    std::vector<std::string> mlist;
+    std::vector<std::string> mlist; //san
+    std::vector<std::string> ulist; //uci
     int evalCP = 0;
 
     bool evalMate = false;
