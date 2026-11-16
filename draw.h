@@ -37,7 +37,7 @@ inline void drawb(const board& b, int cr, int cc, int sr, int sc, bool flip) { /
         mvaddch(margint - 1, marginl + c * 4 + 1, 'a' + file);
     }
 
-    int ccr = flip ? 7 - cr : cr;
+    int crf = flip ? 7 - cr : cr;
     int ccf = flip ? 7 - cc : cc;
 
     int srf = flip ? 7 - sr : sr;
