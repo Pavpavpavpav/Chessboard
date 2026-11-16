@@ -4,15 +4,7 @@
 #include "engine.h"
 
 
-void ldemo(info& in) { //test values
-    in.bname = "Stockfish";
-    in.wname = "You";
-    
-    in.belo = 1500;
-    in.welo = -1;
-    
-    in.evalCP = 35;
-}
+
 
 std::string sqn(int r, int c){ //returns the square selected
     return std::string(1, 'a' + c) + std::string(1, '0' + (8 - r));
@@ -38,7 +30,6 @@ int main() {
 
     board b;
     info in;
-    ldemo (in);
     std::string engPath;
 
     int cr = 6, cc = 4;

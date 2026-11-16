@@ -108,11 +108,11 @@ struct board {
 
 // info of the players
 struct info {
-    std::string wname = "White's name";
-    std::string bname = "Black's name";
+    std::string wname = "You";
+    std::string bname = "(no engine)";
 
     int welo = -1;
-    int belo = - 1;
+    int belo = -1;
 
     std::vector<std::string> mlist; //san
     std::vector<std::string> ulist; //uci
